@@ -1,12 +1,13 @@
 import * as uuid from "uuid";
 
-export default function CreateTrafficRequestService(runway, aircraft, hour, minute, type){
+export default function CreateTrafficRequestService(runway, aircraft, type){
+    const d = new Date();
     return {
         id: uuid.v4(),
         runway: runway,
         aircraft: aircraft,
-        hour: hour,
-        minute: minute,
+        hour: d.getHours(),
+        minute: d.getMinutes(),
         type: type
     };
 }

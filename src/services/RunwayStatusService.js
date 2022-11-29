@@ -1,4 +1,6 @@
 export default function RunwayStatusService (runway) {
     const d = new Date();
-    return(runway.time[d.getHours()][d.getHours()].availability)
+    const minutes = d.getMinutes();
+    const availability = runway.time[d.getHours()][d.getHours()].availability;
+    return `${availability} | ${minutes}`
 }

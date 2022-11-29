@@ -14,9 +14,12 @@ import Runway from './components/Runway.js';
 import Aircraft from './components/Aircraft.js';
 import RunwayStatusService from './services/RunwayStatusService.js';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import TrafficRequestProcessor from './processors/TrafficRequestProcessor.js';
+import CreateTrafficRequestService from './services/CreateTrafficRequestService.js';
 
 
 function App() {
+  const trafficRequestProcessor = new TrafficRequestProcessor()
 
   const [aircrafts, setAircrafts] = useState([]);
   const [runways, setRunways] = useState([]);
@@ -25,11 +28,10 @@ function App() {
 
   useEffect( () => {
     const runways = []
-    for(let i=1;i<5;i++){
-        runways.push(new Runway(i))
+    for(let i=0;i<4;i++){
+        runways.push(new Runway(i+1))
     }
     setRunways(runways)
-    console.log(runways)
 
     const aircrafts = [
       new Aircraft("F800", 15, 21),
@@ -37,7 +39,6 @@ function App() {
       new Aircraft("FA20", 10, 15),
     ]
     setAircrafts(aircrafts)
-    console.log(aircrafts)
   }, [])
 
 
@@ -46,14 +47,11 @@ function App() {
   }
 
   const handleSelectRunway = async (runway) => {
-    await setSelectedRunwayId(runway);
-    // const runwayStatus = RunwayStatusService(runways[selectedRunwayId-1], 10, 10)
-    // console.log(await getRunwayFromId(runways[selectedRunwayId]));
-    // console.log(runwayStatus)
+    setSelectedRunwayId(runway);
   }
 
   const onFormAdd = async () => {
-    
+    trafficRequestProcessor.AddTraffic(CreateTrafficRequestService(runways[selectedRunwayId], aircrafts[selectedAircraftId], "landing"))
   }
 
   return (
@@ -67,13 +65,14 @@ function App() {
         <Form>
           <Form.Label>Configure Traffic</Form.Label>
           <table className="mainForm">
+            <tbody>
             <tr>
               <td><Form.Label>Aircraft</Form.Label></td>
               <td>
                 <Dropdown>
                   <DropdownButton title={selectedAircraftId ? selectedAircraftId : "Select an aircraft"} onSelect={handleSelectAircraft}>
-                    {!aircrafts? "No aircrafts to display": aircrafts.map((aircraft) => {
-                      return <Dropdown.Item key={aircraft.id} eventKey={aircraft.id}>{aircraft.id}</Dropdown.Item>
+                    {!aircrafts? "No aircrafts to display": aircrafts.map((aircraft, i) => {
+                      return <Dropdown.Item key={i} eventKey={aircraft.id}>{aircraft.id}</Dropdown.Item>
                     })}
                   </DropdownButton>
                 </Dropdown>
@@ -88,11 +87,10 @@ function App() {
                   </DropdownButton>
                 </Dropdown>
               </td>
-          </tr>
-          <tr>
-            <Button variant="primary" type="add" disabled={!selectedAircraftId || !selectedRunwayId} onClick={onFormAdd}> Add traffic request </Button>
-          </tr>
+            </tr>
+            </tbody>
           </table>
+          <Button variant="primary" type="add" disabled={!selectedAircraftId || !selectedRunwayId} onClick={onFormAdd}> Add traffic request </Button>
         </Form>
       </div>
       <div className="runwayStatus">
@@ -105,7 +103,6 @@ function App() {
             {!runways? "No runways configued": runways.map((runway) => {
               return <tr>
                 <td key={runway.id}>{runway.id}</td>
-                {/* <td key={`${runway.id}-availability`> {let date = new Date();console.log(new Date.getMinutes()) }</td> */}
                 <td key={`${runway.id}-availability`}>{RunwayStatusService(runway)}</td>
               </tr>
             })}
