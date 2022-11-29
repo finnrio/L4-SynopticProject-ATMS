@@ -1,6 +1,13 @@
 export default function RunwayStatusService (runway) {
-    const d = new Date();
-    const minutes = d.getMinutes();
-    const availability = runway.time[d.getHours()][d.getHours()].availability;
-    return `${availability} | ${minutes}`
+    function getWaitingTime(){
+        let time = 0;
+        for (const item in runway.queue) {
+            time += runway.queue[item].time
+        }
+        return time;
+    }
+    return {
+        availability: runway.status,
+        waitingTime: getWaitingTime(),
+    }
 }
