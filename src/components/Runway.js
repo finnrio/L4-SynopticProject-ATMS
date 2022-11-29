@@ -2,7 +2,6 @@ export default class Runway {
 
     constructor(id) {
         this.id = id;
-        
         this.time = this.createTimetable()
     }
 

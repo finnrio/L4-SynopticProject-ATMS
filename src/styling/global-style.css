@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: "Karla", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  #rootContainer {
+    background-color: #dfe8de;
+  }
+  
+  .container {
+    max-width: 90%;
+    /* height: 100vh; */
+    margin-right: auto;
+    margin-left: auto;
+    padding: 1rem;
+  }
+  
+  #routerContainer {
+    max-width: 90%;
+    height: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 1rem;
+    background-color: #F7FFF6;
+  }
+  
+  article h1 {
+    margin: 1rem 0;
+  }
+  
+  .vr {
+    margin-right: 25px;
+  }
+  
+  .dropdown-menu {
+    height: 200px;
+    overflow-y: scroll;
+  }
+  
+  .dropdown-menu.show {
+    background-color: #cdd8cb;
+  }
+  
+  
+  .dropdown-padding {
+    padding-bottom: 20px;
+  }
+  
+  thead {
+    background: #93b48b;
+    color: #354232;
+  }
+  
+  tbody {
+    background: #dfe8de;
+  }
+  
+  .btn.btn-primary,
+  .dropdown-toggle.btn.btn-primary {
+    background-color: #93b48b;
+    border-color: #4e604a4d;
+    color: #354232;
+    font-weight: bold;
+  }
+  
+  .btn.btn-primary:disabled {
+    background-color: #354232;
+  }
+  
+  .btn.btn-primary:hover {
+    background-color: #4e604a4d;
+  }
+  
+  select {
+    background-color: #dfe8de;
+  }
