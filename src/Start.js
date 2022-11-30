@@ -1,5 +1,5 @@
-import Runway from './components/Runway.js';
-import Aircraft from './components/Aircraft.js';
+import Runway from './components/Runway.ts';
+import Aircraft from './components/Aircraft.ts';
 
 export default function Start() {
     const runways = []
@@ -10,7 +10,7 @@ export default function Start() {
     const aircrafts = [
       new Aircraft("F800", 15*60*1000, 21*60*1000),
       new Aircraft("DC1001", 12*60*1000, 18*60*1000),
-      new Aircraft("FA20", 10*60*1000, 10*1000),
+      new Aircraft("FA20", 10*1000, 10*1000),
     ]
 
     return [runways, aircrafts]

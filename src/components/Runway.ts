@@ -1,5 +1,10 @@
 export default class Runway {
 
+    id: number;
+    status: string;
+    queue: any[];
+
+
     constructor(id) {
         this.id = id;
         this.status = "available"
@@ -7,7 +12,8 @@ export default class Runway {
     }
 
     QueuePrepare(){
-        this.queue.push({action: "preparing", time: 15*1000});
+        const preparingQueueJob = {action: "preparing", time: 300000};
+        this.queue.push(preparingQueueJob);
     }
 
     QueueAdd(action, time){

@@ -1,5 +1,5 @@
 import Table from 'react-bootstrap/Table';
-import RunwayStatusService from '../services/RunwayStatusService.js';
+import RunwayStatusService from '../services/RunwayStatusService.ts';
 import { useState } from "react";
 import { useEffect } from 'react';
 
