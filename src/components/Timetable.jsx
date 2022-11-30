@@ -14,15 +14,19 @@ export default function Timetable(props) {
     return (
         <Table striped bordered>
           <thead>
-            <th>Runway</th>
-            <th>Current Status</th>
+            <tr key="head">
+              <th key="runway">Runway</th>
+              <th key="status">Current Status</th>
+              <th key="queue">Queue</th>
+            </tr>
           </thead>
           <tbody>
             {!runways? "No runways configued": runways.map((runway) => {
-              console.log(runway)
-              return <tr>
+              const runwayStatusResp = RunwayStatusService(runway)
+              return <tr key={runway.id}>
                 <td key={runway.id}>{runway.id}</td>
-                <td key={`${runway.id}-availability`}>{JSON.stringify(RunwayStatusService(runway))}</td>
+                <td key={`${runway.id}-availability`}>{runwayStatusResp.availability}</td>
+                <td key={`${runway.id}-queue`}>{runwayStatusResp.queueSize}</td>
               </tr>
             })}
           </tbody>

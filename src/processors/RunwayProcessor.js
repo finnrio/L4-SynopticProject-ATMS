@@ -8,5 +8,8 @@ export default class RunwayProcessor {
             await timeout(runway.queue[0].time)
             runway.queue = runway.queue.slice(1);
         }
+        if(runway.queue.length === 0){
+            runway.status = "available";
+        }
     }
 }

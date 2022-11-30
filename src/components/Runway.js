@@ -7,7 +7,7 @@ export default class Runway {
     }
 
     QueuePrepare(){
-        this.queue.push({action: "preparing", time: 300});
+        this.queue.push({action: "preparing", time: 15*1000});
     }
 
     QueueAdd(action, time){
