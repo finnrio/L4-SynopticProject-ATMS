@@ -12,7 +12,7 @@ export default class Runway {
     }
 
     QueuePrepare(){
-        const preparingQueueJob = {action: "preparing", time: 300000};
+        const preparingQueueJob = {action: "preparing", time: 5*60*1000};
         this.queue.push(preparingQueueJob);
     }
 
