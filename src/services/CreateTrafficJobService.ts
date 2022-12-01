@@ -1,5 +1,5 @@
-import CheckRunwayService from "./CheckRunwayService"
-import RunwayProcessor from "../processors/RunwayProcessor";
+import CheckRunwayService from "./CheckRunwayService.ts"
+import RunwayProcessor from "../processors/RunwayProcessor.ts";
 
 export default function CreateTrafficJobService(trafficRequest){
     const runway = trafficRequest.runway;

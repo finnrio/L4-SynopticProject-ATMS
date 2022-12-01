@@ -4,7 +4,7 @@ describe("RunwayStatusService", () => {
     const mockStatus = "status";
     const mockRunway = {
         status: mockStatus,
-        queue: [1, 2, 3, 4, 5]
+        queue: [{action: "landing"}, {action: "takeOff"}, {action: "preparing"}, {action: "takeOff"}]
     }
 
     it("should return the runway status", () => {
@@ -14,6 +14,6 @@ describe("RunwayStatusService", () => {
 
     it("should return the runway queue size", () => {
         const resp = RunwayStatusService(mockRunway);
-        expect(resp.queueSize).toBe(2);
+        expect(resp.queueSize).toBe(3);
     });
 })
